@@ -11,6 +11,7 @@
         public function getId(){
             return $this->id;
         }
+
         //setter
         public function setDescricao($descricao){
             $this->descricao = mb_strtoupper($descricao);

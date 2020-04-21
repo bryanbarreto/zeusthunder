@@ -6,13 +6,13 @@
     <title>Zeus Thunder - Cadastro de Exercícios</title>
     <?php include 'includes/jeasyui.includes.php'; ?>
     <script src="js/cadexercicio.js"></script>
-</head>
+</head> 
 <body>
     <?php include 'navbar.php'; ?>
 
     <!--data grid-->
     <table id="dg" title="Cadastro de Exercícios" class="easyui-datagrid" style="width:100% ;height:450px" url="academia-backend/app/cadexercicio.app.php?ajax=carregarTodos" toolbar="#toolbar" pagination="false" rownumbers="true" fitColumns="true" singleSelect="true">
-        <thead>
+        <thead> 
             <tr>
                 <th field="c_descricao" width="70">First Name</th>
                 <th field="status" width="30">Last Name</th>
