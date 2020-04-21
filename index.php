@@ -10,6 +10,7 @@
     <link rel="icon" href="academia-frontend/favicon.ico" type="image/x-icon">
 </head>
 <body>
+.
     <script>
        window.addEventListener('load',function(){
            window.location.href = "academia-frontend/index.php"
