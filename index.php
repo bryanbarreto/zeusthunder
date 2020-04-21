@@ -13,7 +13,7 @@
 .
     <script>
        window.addEventListener('load',function(){
-           window.location.href = "academia-frontend/index.php"
+           //window.location.href = "academia-frontend/index.php"
        })
     </script>
 </body>
