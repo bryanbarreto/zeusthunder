@@ -14,30 +14,6 @@ $(document).ready(function () {
     });
 })
 
-
-// FUNCAO PARA FORMATAR A DATA DD//MM/YYYY
-function myformatter(date) {
-    var y = date.getFullYear();
-    var m = date.getMonth() + 1;
-    var d = date.getDate();
-    return (d < 10 ? ('0' + d) : d) + '/' + (m < 10 ? ('0' + m) : m) + '/' + y;
-}
-
-function myparser(s) {
-    if (!s) return new Date();
-    var ss = (s.split('\/'));
-    var d = parseInt(ss[0], 10);
-    var m = parseInt(ss[1], 10);
-    var y = parseInt(ss[2], 10);
-    if (!isNaN(y) && !isNaN(m) && !isNaN(d)) {
-        return new Date(y, m - 1, d);
-    } else {
-        return new Date();
-    }
-}
-// FUNCAO PARA FORMATAR A DATA DD//MM/YYYY
-
-
 var opcao;
 var row;
 var url = "academia-backend/app/cadaluno.app.php"
@@ -141,6 +117,8 @@ function salvar() {
 
     if (nome == "" || cpf == "" || telefone == "" || dataNascimento == "" || cep == "" || rua == "" || numero == "" || bairro == "" || cidade == "" || estado == "") {
         $.messager.alert("Aviso", "Preencha os campos obrigatórios", "warning")
+    } else if (dataNascimento.includes('_')) { // verifica se data de nascimento contem _ (caso o usuario nao digite a data de nascimento completa, o valor sera retornado com underline por conta da mascara)
+        $.messager.alert("warning", "Preencha uma data de nascimento válida", "warning")
     } else {
         alert('chamada do metodo de salvar')
         return false

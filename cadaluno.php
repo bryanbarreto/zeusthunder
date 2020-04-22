@@ -64,9 +64,8 @@
                         label="Celular:" labelPosition="top" style="width:99%" data-options="required:true">
                 </div>
                 <div style="width:33.33%;float:left">
-                    <input id="c_datanascimento" name="c_datanascimento" label="Data de Nascimento:" labelPosition="top"
-                        style="width:99%" class="easyui-datebox" required="true" editable='false'
-                        data-options="formatter:myformatter,parser:myparser">
+                    <input class="easyui-maskedbox" id="c_datanascimento" name="c_datanascimento" mask="99/99/9999"
+                        label="Data de Nascimento:" labelPosition="top" style="width:99%" data-options="required:true">
                 </div>
             </div>
 
