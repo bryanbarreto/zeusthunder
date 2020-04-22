@@ -14,7 +14,7 @@
 
         //setter
         public function setDescricao($descricao){
-            $this->descricao = strtoupper($descricao);
+            $this->descricao = mb_strtoupper($descricao,'UTF-8');
         }
         public function setId($id){
             $this->id = $id;
