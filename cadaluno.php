@@ -49,25 +49,24 @@
 
             <div style="width:100%; margin-bottom:10px">
                 <input class="easyui-textbox" style="width:99%" id="c_nome" name="c_nome"
-                    data-options="label:'Nome:', labelPosition:'top'">
+                    data-options="label:'Nome:', labelPosition:'top',required:true">
             </div>
 
             <div style="width:100%; margin-bottom:10px">
                 <div style="width:33.33%;float:left">
                     <input class="easyui-maskedbox" id="c_cpf" name="c_cpf" mask="999.999.999-99" label="CPF:"
-                        labelPosition="top" style="width:99%">
+                        labelPosition="top" style="width:99%" data-options="required:true">
                 </div>
-                <div style="width:33.33%;float:left">
+                <div style=" width:33.33%;float:left">
                     <input class="easyui-maskedbox" id="c_telefone" name="c_telefone" mask="(99) 9 9999-9999"
-                        label="Telefone:" labelPosition="top" style="width:99%">
+                        label="Celular:" labelPosition="top" style="width:99%" data-options="required:true">
                 </div>
                 <div style="width:33.33%;float:left">
-                    <input class="easyui-maskedbox" id="c_datanascimento" name="c_datanascimento" mask="99/99/9999"
-                        label="Data de Nascimento:" labelPosition="top" style="width:99%">
+                    <input id="c_datanascimento" name="c_datanascimento" label="Data de Nascimento:" labelPosition="top"
+                        style="width:99%" class="easyui-datebox" required="true" editable='false'
+                        data-options="formatter:myformatter,parser:myparser">
                 </div>
             </div>
-
-            <h2 style="opacity:0">a</h2>
 
             <div style="margin-bottom: 10px; margin-top:40px">
                 <h2>Informações de Endereço:</h2>
@@ -76,7 +75,7 @@
             <div style="width:100%; margin-bottom:10px">
                 <div style="width:20%; float:left">
                     <input class="easyui-maskedbox" id="c_cep" name="c_cep" mask="99999-999" label="CEP:"
-                        labelPosition="top" style="width:99%" onkeyup="pesquisarCep()">
+                        labelPosition="top" style="width:99%" required="true" onkeyup="pesquisarCep()">
                 </div>
 
                 <div style="width:60%; float:left">
@@ -85,8 +84,8 @@
                 </div>
 
                 <div style="width:20%; float:left">
-                    <input class="easyui-numberbox" id="n_numero" name="n_numero" label="Número:" labelPosition="top"
-                        style="width:99%">
+                    <input class="easyui-numberbox" id="n_numero" required="true" name="n_numero" label="Número:"
+                        labelPosition="top" style="width:99%">
                 </div>
             </div>
 
@@ -111,8 +110,6 @@
                 <input class="easyui-textbox" id="c_complemento" name="c_complemento" style="width:100%"
                     data-options="label:'Complemento:', labelPosition:'top'">
             </div>
-
-            <h2 style="opacity:0">a</h2>
 
         </form>
     </div>

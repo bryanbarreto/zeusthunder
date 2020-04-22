@@ -1,5 +1,4 @@
 $(document).ready(function () {
-    console.log('testando cepii')
 
     // funcao de onchange para verificar se o cep foi digitado corretamente e realizar a busca utilizando a api do viacep
     $('#c_cep').maskedbox({
@@ -15,6 +14,30 @@ $(document).ready(function () {
     });
 })
 
+
+// FUNCAO PARA FORMATAR A DATA DD//MM/YYYY
+function myformatter(date) {
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    var d = date.getDate();
+    return (d < 10 ? ('0' + d) : d) + '/' + (m < 10 ? ('0' + m) : m) + '/' + y;
+}
+
+function myparser(s) {
+    if (!s) return new Date();
+    var ss = (s.split('\/'));
+    var d = parseInt(ss[0], 10);
+    var m = parseInt(ss[1], 10);
+    var y = parseInt(ss[2], 10);
+    if (!isNaN(y) && !isNaN(m) && !isNaN(d)) {
+        return new Date(y, m - 1, d);
+    } else {
+        return new Date();
+    }
+}
+// FUNCAO PARA FORMATAR A DATA DD//MM/YYYY
+
+
 var opcao;
 var row;
 var url = "academia-backend/app/cadaluno.app.php"
@@ -22,14 +45,14 @@ var url = "academia-backend/app/cadaluno.app.php"
 function novo() {
     opcao = "novo"
     $('#fm').form('clear')
-    $('#dlg').dialog('open').dialog('setTitle', 'Novo Exercício')
+    $('#dlg').dialog('open').dialog('setTitle', 'Novo Aluno')
 }
 
 function editar() {
     opcao = "editar"
     row = $('#dg').datagrid('getSelected')
     if (row) {
-        $('#dlg').dialog('open').dialog('setTitle', 'Alterar Exercício')
+        $('#dlg').dialog('open').dialog('setTitle', 'Alterar Aluno')
         $('#fm').form('load', row)
     } else {
         $.messager.alert("Aviso", "Escolha um exercício para editar", "warning")
@@ -103,11 +126,24 @@ function inativar() {
 }
 
 function salvar() {
-    var descricao = $('#descricao').textbox('getValue')
 
-    if (descricao == "") {
-        $.messager.alert("Aviso", "Preencha a descrição do exercício", "warning")
+    var nome = $('#c_nome').textbox('getValue')
+    var cpf = $('#c_cpf').textbox('getValue')
+    var telefone = $('#c_telefone').textbox('getValue')
+    var dataNascimento = $('#c_datanascimento').textbox('getValue')
+    var cep = $('#c_cep').textbox('getValue')
+    var rua = $('#c_rua').textbox('getValue')
+    var numero = $('#n_numero').textbox('getValue')
+    var bairro = $('#c_bairro').textbox('getValue')
+    var cidade = $('#c_cidade').textbox('getValue')
+    var estado = $('#c_estado').textbox('getValue')
+    var complemento = $('#c_complemento').textbox('getValue')
+
+    if (nome == "" || cpf == "" || telefone == "" || dataNascimento == "" || cep == "" || rua == "" || numero == "" || bairro == "" || cidade == "" || estado == "") {
+        $.messager.alert("Aviso", "Preencha os campos obrigatórios", "warning")
     } else {
+        alert('chamada do metodo de salvar')
+        return false
         switch (opcao) {
             case 'novo':
                 $.post(url, {
