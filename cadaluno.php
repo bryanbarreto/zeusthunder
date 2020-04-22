@@ -12,6 +12,8 @@
 <body>
     <?php include 'navbar.php'; ?>
 
+    <h2>Gerenciar Alunos</h2>
+
     <!--data grid-->
     <table id="dg" title="Cadastro de Alunos" class="easyui-datagrid" style="width:100% ;height:450px" url=""
         toolbar="#toolbar" pagination="false" rownumbers="true" fitColumns="true" singleSelect="true">
