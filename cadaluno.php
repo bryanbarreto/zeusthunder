@@ -39,30 +39,31 @@
     </div>
     <!--toolbar-->
     <!--dialog-->
-    <div id="dlg" class="easyui-dialog" style="width:700px"
+    <div id="dlg" class="easyui-dialog" style="width:700px; top:30px"
         data-options="draggable:false,closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
 
             <div style="margin-bottom: 10px">
-                <h2>Dados Pessoaiss:</h2>
+                <h2>Dados Pessoais:</h2>
             </div>
 
             <div style="width:100%; margin-bottom:10px">
-                <input class="easyui-textbox" style="width:99%" data-options="label:'Nome:', labelPosition:'top'">
+                <input class="easyui-textbox" style="width:99%" id="c_nome" name="c_nome"
+                    data-options="label:'Nome:', labelPosition:'top'">
             </div>
 
             <div style="width:100%; margin-bottom:10px">
                 <div style="width:33.33%;float:left">
-                    <input class="easyui-maskedbox" mask="999.999.999-99" label="CPF:" labelPosition="top"
-                        style="width:99%">
+                    <input class="easyui-maskedbox" id="c_cpf" name="c_cpf" mask="999.999.999-99" label="CPF:"
+                        labelPosition="top" style="width:99%">
                 </div>
                 <div style="width:33.33%;float:left">
-                    <input class="easyui-maskedbox" mask="(99) 9 9999-9999" label="Telefone:" labelPosition="top"
-                        style="width:99%">
+                    <input class="easyui-maskedbox" id="c_telefone" name="c_telefone" mask="(99) 9 9999-9999"
+                        label="Telefone:" labelPosition="top" style="width:99%">
                 </div>
                 <div style="width:33.33%;float:left">
-                    <input class="easyui-maskedbox" mask="99/99/9999" label="Data de Nascimento:" labelPosition="top"
-                        style="width:99%">
+                    <input class="easyui-maskedbox" id="c_datanascimento" name="c_datanascimento" mask="99/99/9999"
+                        label="Data de Nascimento:" labelPosition="top" style="width:99%">
                 </div>
             </div>
 
@@ -79,30 +80,35 @@
                 </div>
 
                 <div style="width:60%; float:left">
-                    <input class="easyui-textbox" label="Rua:" labelPosition="top" style="width:99%">
+                    <input class="easyui-textbox" id="c_rua" readonly name="c_rua" label="Rua:" labelPosition="top"
+                        style="width:99%">
                 </div>
 
                 <div style="width:20%; float:left">
-                    <input class="easyui-numberbox" label="Número:" labelPosition="top" style="width:99%">
+                    <input class="easyui-numberbox" id="n_numero" name="n_numero" label="Número:" labelPosition="top"
+                        style="width:99%">
                 </div>
             </div>
 
             <div style="width:100%; margin-bottom:10px">
                 <div style="width:33.33%; float:left">
-                    <input class="easyui-textbox" label="Bairro:" labelPosition="top" style="width:99%">
+                    <input class="easyui-textbox" id="c_bairro" readonly name="c_bairro" label="Bairro:"
+                        labelPosition="top" style="width:99%">
                 </div>
 
                 <div style="width:33.33%; float:left">
-                    <input class="easyui-textbox" label="Cidade:" labelPosition="top" style="width:99%">
+                    <input class="easyui-textbox" id="c_cidade" readonly name="c_cidade" label="Cidade:"
+                        labelPosition="top" style="width:99%">
                 </div>
 
                 <div style="width:33.33%; float:left">
-                    <input class="easyui-textbox" label="Estado:" labelPosition="top" style="width:99%">
+                    <input class="easyui-textbox" id="c_estado" readonly name="c_estado" label="Estado:"
+                        labelPosition="top" style="width:99%">
                 </div>
             </div>
 
             <div style="width:100%; margin-bottom:10px">
-                <input class="easyui-textbox" style="width:100%"
+                <input class="easyui-textbox" id="c_complemento" name="c_complemento" style="width:100%"
                     data-options="label:'Complemento:', labelPosition:'top'">
             </div>
 

@@ -146,7 +146,19 @@ function salvar() {
 
 //consome api do viacep atraves do cep recebido por parametro
 function buscarCep(cep) {
-    $.getJSON('https://viacep.com.br/ws/' + cep + '/json/viacep.com.br/ws/', function (result) {
-        console.log(result)
+    $.get('https://viacep.com.br/ws/' + cep + '/json/', function (result) {
+
+        if (result.erro) {
+            $.messager.alert("Erro", "Digite um CEP válido", "error")
+            $('#c_rua').textbox('setValue', '')
+            $('#c_bairro').textbox('setValue', '')
+            $('#c_cidade').textbox('setValue', '')
+            $('#c_estado').textbox('setValue', '')
+        } else {
+            $('#c_rua').textbox('setValue', result.logradouro)
+            $('#c_bairro').textbox('setValue', result.bairro)
+            $('#c_cidade').textbox('setValue', result.localidade)
+            $('#c_estado').textbox('setValue', result.uf)
+        }
     }, 'JSON')
 }
