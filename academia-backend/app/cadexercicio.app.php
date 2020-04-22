@@ -23,8 +23,8 @@
 
         case 'incluir': 
             try{
-                //$objeto->setDescricao($_REQUEST['descricao']);
-                echo "chegou aqui";
+                $objeto->setDescricao($_REQUEST['descricao']);
+                //echo "chegou aqui";
                 $objeto->incluir();
                 $json = true;
             }catch(Exception $e){
