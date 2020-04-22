@@ -23,6 +23,7 @@
 
         case 'incluir': 
             try{
+                echo "chegou aqui";
                 $objeto->setDescricao($_REQUEST['descricao']);
                 $objeto->incluir();
                 $json = true;

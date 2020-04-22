@@ -39,7 +39,7 @@
             return $res;
         }
         public function incluir(){
-         echo   $sql = "INSERT INTO exercicio (c_descricao) values ('$this->descricao')";
+            $sql = "INSERT INTO exercicio (c_descricao) values ('$this->descricao')";
             $query = pg_query($sql);
             if(pg_affected_rows($query)==0){
                 throw new Exception("Erro ao incluir exercício");
