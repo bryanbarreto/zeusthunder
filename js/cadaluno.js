@@ -1,10 +1,23 @@
 $(document).ready(function () {
+    console.log('testando cepii')
 
+    // funcao de onchange para verificar se o cep foi digitado corretamente e realizar a busca utilizando a api do viacep
+    $('#c_cep').maskedbox({
+        onChange: function (newValue, oldValue) {
+            //converte o cep para inteiro e substitui o - da mascara por vazio
+            var cep = parseInt(newValue.replace('-', ''))
+
+            //faz a verificacao do length do cep (necessario convertelo para string)
+            if (cep.toString().length == 8) {
+                buscarCep(cep)
+            }
+        }
+    });
 })
 
 var opcao;
 var row;
-var url = "academia-backend/app/cadexercicio.app.php"
+var url = "academia-backend/app/cadaluno.app.php"
 
 function novo() {
     opcao = "novo"
@@ -128,4 +141,12 @@ function salvar() {
                 break;
         }
     }
+}
+
+
+//consome api do viacep atraves do cep recebido por parametro
+function buscarCep(cep) {
+    $.getJSON('https://viacep.com.br/ws/' + cep + '/json/viacep.com.br/ws/', function (result) {
+        console.log(result)
+    }, 'JSON')
 }
