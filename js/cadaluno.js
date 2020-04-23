@@ -43,8 +43,8 @@ function ativar() {
             return false
         }
         $.messager.confirm({
-            title: "Restaurar",
-            msg: "Deseja restaurar esse registro?",
+            title: "Ativar",
+            msg: "Deseja ativar o aluno " + row.c_nome + " ?",
             ok: "Sim",
             cancel: "Não",
             fn: function (resp) {
@@ -54,7 +54,7 @@ function ativar() {
                         id: row.id
                     }, function (result) {
                         if (result == true) {
-                            $.messager.alert("Sucesso", "Matrícula reaberta com sucesso", "info")
+                            $.messager.alert("Sucesso", "Aluno ativado com sucesso", "info")
                             $('#dg').datagrid('reload')
                         } else {
                             $.messager.alert("Erro", result, "error");
@@ -64,7 +64,7 @@ function ativar() {
             }
         })
     } else {
-        $.messager.alert("Aviso", "Escolha um registro para restaurar", "warning")
+        $.messager.alert("Aviso", "Escolha um aluno para ativar", "warning")
     }
 }
 
@@ -76,8 +76,8 @@ function inativar() {
             return false
         }
         $.messager.confirm({
-            title: "Excluir",
-            msg: "Deseja realizar o trancamento do aluno " + row.c_nome + " ?",
+            title: "Inativar",
+            msg: "Deseja inativar o aluno " + row.c_nome + " ?",
             ok: "Sim",
             cancel: "Não",
             fn: function (resp) {
@@ -87,7 +87,7 @@ function inativar() {
                         id: row.id
                     }, function (result) {
                         if (result == true) {
-                            $.messager.alert("Sucesso", "Matrícula trancada com sucesso", "info")
+                            $.messager.alert("Sucesso", "Aluno inativado com sucesso", "info")
                             $('#dg').datagrid('reload')
                         } else {
                             $.messager.alert("Erro", result, "error");
@@ -97,7 +97,7 @@ function inativar() {
             }
         })
     } else {
-        $.messager.alert("Aviso", "Escolha um registro para excluir", "warning")
+        $.messager.alert("Aviso", "Escolha um aluno para inativar", "warning")
     }
 }
 
@@ -126,6 +126,8 @@ function salvar() {
     } else if (telefone.includes('_')) {
         $.messager.alert("warning", "Número de celular não foi preenchido corretamente", "warning")
     } else {
+
+        // post para incluir ou alterar registro
         switch (opcao) {
             case 'novo':
                 $.post(url, {
@@ -180,7 +182,6 @@ function salvar() {
         }
     }
 }
-
 
 //consome api do viacep atraves do cep recebido por parametro
 function buscarCep(cep) {

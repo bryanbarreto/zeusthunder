@@ -23,9 +23,8 @@
                 <th field="c_nome" width="40"><b>Nome</b></th>
                 <th field="c_cpf" width="13"><b>CPF</b></th>
                 <th field="c_datanascimento" width="17"><b>Data de Nascimento</b></th>
-                <th field="c_telefone" width="20"><b>Telefone</b></th>
-                <th field="examemedico" width="10"><b>Exame</b></th>
-                <th field="status" width="20"><b>Status</b></th>
+                <th field="celformatado" width="15"><b>Telefone</b></th>
+                <th field="status" width="10"><b>Status</b></th>
             </tr>
         </thead>
     </table>
@@ -37,9 +36,9 @@
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
             onclick="editar()">Alterar</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" plain="true"
-            onclick="inativar()">Trancar Matrícula</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="ativar()">Reabrir
-            Matrícula</a>
+            onclick="inativar()">Inativar</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
+            onclick="ativar()">Ativar</a>
     </div>
     <!--toolbar-->
     <!--dialog-->
@@ -117,11 +116,6 @@
         </form>
     </div>
     <!--dialog-->
-
-    <!--
-    <input class="easyui-maskedbox" mask="99/99/9999" label="Data Nascimento:" labelPosition="top" style="width:95%">
-    <input class="easyui-textbox" name="c_nome" id="c_nome" style="width:95%" data-options="label:'Nome:', labelPosition:'top'">
-    -->
 
     <!-- dialog buttons -->
     <div id="dlg-buttons">

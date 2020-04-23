@@ -13,7 +13,7 @@
         public $cidade;
         public $estado;
         public $complemento;
-        public $motivo;
+
         //getter
 
         //setter
@@ -47,9 +47,6 @@
                         c_cidade,
                         c_estado,
                         c_complemento,
-                        b_examemedico,
-                        d_datamatricula,
-                        d_trancado, 
                         b_ativo
                     ) VALUES (
                         default,
@@ -64,9 +61,6 @@
                         '$this->cidade',
                         '$this->estado',
                         '$this->complemento',
-                        default,
-                        default, 
-                        NULL,
                         default
                     )";
             $query = pg_query($sql);
@@ -74,7 +68,7 @@
                 throw new Exception("Erro ao cadastrar Aluno: ".pg_last_error());
             }
         }
-
+ 
         function alterar(){
             $sql = "UPDATE aluno 
                         SET
@@ -98,31 +92,22 @@
         }
 
         function ativar(){
-            $sql = "UPDATE aluno 
-                    SET 
-                        b_tivo = false,
-                        d_trancado = null, 
-                        t_motivo = '$this->motivo'
-                    WHERE id = '$this->id'";
-            $query = pg_query($query);
+            $sql = "UPDATE aluno SET b_ativo = true WHERE id = '$this->id'";
+            $query = pg_query($sql); 
             if(pg_affected_rows($query)==0){
-                throw new Exception("Erro ao restaurar matrícula");
+                throw new Exception("Erro ao ativar aluno: ".pg_last_error()); 
             } 
         }
 
         function inativar(){
-            $sql = "UPDATE aluno 
-                    SET
-                        b_tivo = false, 
-                        d_trancado = now()
-                    WHERE id = '$this->id'";
-            $query = pg_query($query); 
+            $sql = "UPDATE aluno SET b_ativo = false WHERE id = '$this->id'";
+            $query = pg_query($sql); 
             if(pg_affected_rows($query)==0){
-                throw new Exception("Erro ao trancar matrícula");
+                throw new Exception("Erro ao inativar aluno: ".pg_last_error()); 
             } 
         }
-
-
+ 
+ 
         // funcoes de verificacao
         function isAluno($flag){
             //verifica se está incluindo registro ou alterando
@@ -244,6 +229,12 @@
             throw new Exception("O CPF digitado não é válido - Digito verificador 2 não confere");
            }
              
+        }
+
+        //formata o celular para transformar em link clicavel de converda do wpp 
+        function retornarNumeros($celular){
+            $remove = array("(",")"," ","-");
+            return str_replace($remove,"",$celular);
         }
     }  
 ?>   
