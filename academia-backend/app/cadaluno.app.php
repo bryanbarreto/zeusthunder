@@ -22,7 +22,7 @@
                 foreach($json as &$dados){
                     $dados['examemedico'] = $dados['b_examemedico'] != 'f'? "<i style='font-size:18px;color:green;' class='fas fa-check-circle'></i>":"<i style='font-size:18px;color:red;' class='fas fa-times-circle'></i>"; 
 
-                    $dados['c_nome'] = mb_convert_case($dados['c_nome'],MB_CASE_UPPER,'UTF-8');
+                    $dados['c_nome'] = strtoupper($dados['c_nome']);
                 }
             } 
             echo json_encode($json);          
