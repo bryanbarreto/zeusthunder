@@ -8,3 +8,6 @@
 <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+
+<!-- fontawesome -->
+<script src="https://kit.fontawesome.com/32e9f74af7.js" crossorigin="anonymous"></script>

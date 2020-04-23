@@ -54,7 +54,7 @@ function ativar() {
                         id: row.id
                     }, function (result) {
                         if (result == true) {
-                            $.messager.alert("Sucesso", "Registro ativado com sucesso", "info")
+                            $.messager.alert("Sucesso", "Matrícula reaberta com sucesso", "info")
                             $('#dg').datagrid('reload')
                         } else {
                             $.messager.alert("Erro", result, "error");
@@ -77,7 +77,7 @@ function inativar() {
         }
         $.messager.confirm({
             title: "Excluir",
-            msg: "Deseja excluir esse registro?",
+            msg: "Deseja realizar o trancamento do aluno " + row.c_nome + " ?",
             ok: "Sim",
             cancel: "Não",
             fn: function (resp) {
@@ -87,7 +87,7 @@ function inativar() {
                         id: row.id
                     }, function (result) {
                         if (result == true) {
-                            $.messager.alert("Sucesso", "Registro inativado com sucesso", "info")
+                            $.messager.alert("Sucesso", "Matrícula trancada com sucesso", "info")
                             $('#dg').datagrid('reload')
                         } else {
                             $.messager.alert("Erro", result, "error");
@@ -117,19 +117,33 @@ function salvar() {
 
     if (nome == "" || cpf == "" || telefone == "" || dataNascimento == "" || cep == "" || rua == "" || numero == "" || bairro == "" || cidade == "" || estado == "") {
         $.messager.alert("Aviso", "Preencha os campos obrigatórios", "warning")
-    } else if (dataNascimento.includes('_')) { // verifica se data de nascimento contem _ (caso o usuario nao digite a data de nascimento completa, o valor sera retornado com underline por conta da mascara)
-        $.messager.alert("warning", "Preencha uma data de nascimento válida", "warning")
+
+        // verifica se data de nascimento contem _ (caso o usuario nao digite a data de nascimento completa, o valor sera retornado com underline por conta da mascara)
+    } else if (dataNascimento.includes('_')) {
+        $.messager.alert("warning", "Data de Nascimento não foi preenchida corretamente", "warning")
+    } else if (cpf.includes('_')) {
+        $.messager.alert("warning", "Cpf não foi preenchido corretamente", "warning")
+    } else if (telefone.includes('_')) {
+        $.messager.alert("warning", "Número de celular não foi preenchido corretamente", "warning")
     } else {
-        alert('chamada do metodo de salvar')
-        return false
         switch (opcao) {
             case 'novo':
                 $.post(url, {
                     ajax: 'incluir',
-                    descricao: descricao
+                    nome: nome,
+                    cpf: cpf,
+                    telefone: telefone,
+                    dataNascimento: dataNascimento,
+                    cep: cep,
+                    rua: rua,
+                    numero: numero,
+                    bairro: bairro,
+                    cidade: cidade,
+                    estado: estado,
+                    complemento: complemento
                 }, function (result) {
                     if (result == true) {
-                        $.messager.alert("Sucesso", "Exercício cadastrado com sucesso", "info")
+                        $.messager.alert("Sucesso", "Aluno cadastrado com sucesso", "info")
                         $('#dg').datagrid('reload')
                         $('#dlg').dialog('close')
                     } else {

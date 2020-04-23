@@ -15,14 +15,16 @@
     <h2>Gerenciar Alunos</h2>
 
     <!--data grid-->
-    <table id="dg" title="Cadastro de Alunos" class="easyui-datagrid" style="width:100% ;height:450px" url=""
-        toolbar="#toolbar" pagination="false" rownumbers="true" fitColumns="true" singleSelect="true">
+    <table id="dg" title="Cadastro de Alunos" class="easyui-datagrid" style="width:100% ;height:450px"
+        url="academia-backend/app/cadaluno.app.php?ajax=carregarTodos" toolbar="#toolbar" pagination="false"
+        rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
             <tr>
-                <th field="c_nome" width="20"><b>Nome</b></th>
-                <th field="c_cpf" width="20"><b>CPF</b></th>
-                <th field="d_datanascimento" width="20"><b>Data de Nascimento</b></th>
+                <th field="c_nome" width="40"><b>Nome</b></th>
+                <th field="c_cpf" width="13"><b>CPF</b></th>
+                <th field="c_datanascimento" width="17"><b>Data de Nascimento</b></th>
                 <th field="c_telefone" width="20"><b>Telefone</b></th>
+                <th field="examemedico" width="10"><b>Exame</b></th>
                 <th field="status" width="20"><b>Status</b></th>
             </tr>
         </thead>
@@ -35,9 +37,9 @@
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true"
             onclick="editar()">Alterar</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-no" plain="true"
-            onclick="inativar()">Excluir</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true"
-            onclick="ativar()">Restaurar</a>
+            onclick="inativar()">Trancar Matrícula</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="ativar()">Reabrir
+            Matrícula</a>
     </div>
     <!--toolbar-->
     <!--dialog-->
