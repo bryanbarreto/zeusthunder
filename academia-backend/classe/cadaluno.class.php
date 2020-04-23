@@ -42,7 +42,7 @@
                         c_datanascimento,
                         c_cep,
                         c_rua,
-                        n_número,
+                        n_numero,
                         c_bairro,
                         c_cidade,
                         c_estado,
@@ -71,12 +71,30 @@
                     )";
             $query = pg_query($sql);
             if(pg_affected_rows($query)==0){
-                throw new Exception("Erro ao cadastrar Aluno");
+                throw new Exception("Erro ao cadastrar Aluno: ".pg_last_error());
             }
         }
 
         function alterar(){
-
+            $sql = "UPDATE aluno 
+                        SET
+                            c_nome = '$this->nome', 
+                            c_cpf = '$this->cpf',
+                            c_telefone = '$this->telefone',
+                            c_datanascimento = '$this->dataNascimento',
+                            c_cep = '$this->cep',
+                            c_rua = '$this->rua',
+                            n_numero = '$this->numero',
+                            c_bairro = '$this->bairro',
+                            c_cidade = '$this->cidade',
+                            c_estado = '$this->estado',
+                            c_complemento = '$this->complemento'
+                        WHERE
+                            id = '$this->id'";
+            $query = pg_query($sql);
+            if(pg_affected_rows($query)==0){
+                throw new Exception("Erro ao alterar Aluno: ".pg_last_error()); 
+            }
         }
 
         function ativar(){
@@ -106,8 +124,15 @@
 
 
         // funcoes de verificacao
-        function isAluno(){
-            $sql = "SELECT * FROM aluno WHERE c_cpf = '$this->cpf'";
+        function isAluno($flag){
+            //verifica se está incluindo registro ou alterando
+            if($flag == 'incluir'){
+                $sql = "SELECT * FROM aluno WHERE c_cpf = '$this->cpf'";
+
+            //caso esteja alterando, busca o cpf no banco excluindo o id do registro atual
+            }else if($flag == 'alterar'){
+                $sql = "SELECT * FROM aluno WHERE c_cpf = '$this->cpf' AND id != '$this->id'";
+            }
             $query = pg_query($sql);
             if(pg_num_rows($query)>0){
                 throw new Exception("Este CPF já foi cadastrado no sistema");
@@ -118,13 +143,33 @@
             //remove os digitos da mascara ("." e "-")
             $numeroCpf = $this->formatarCpf();
 
+            // verifica se o cpf digitado contem todos os digitos iguais
+            $this->verificarDigitos($numeroCpf);
+
             // a soma dos digitos do cpf devem sempre retornar 2 numeros iguais: 11, 22, 33, 44
-            // Verifica se a soma dos digitos resultam em numeros iguais passando por parametr
+            // Verifica se a soma dos digitos resultam em numeros iguais passando por parametro
             $this->verificarSomaCpf($numeroCpf); 
 
             //realiza a validação do cpf, fazendo a lógica de multiplicar os numeros e comparar com os digitos verificadores
             $this->verificarDigitoVerificador1($numeroCpf);
             $this->verificarDigitoVerificador2($numeroCpf);
+        }
+
+        function verificarDigitos($cpf){
+            if(
+                $cpf == "00000000000" ||
+                $cpf == "11111111111" ||
+                $cpf == "22222222222" ||
+                $cpf == "33333333333" ||
+                $cpf == "44444444444" ||
+                $cpf == "55555555555" ||
+                $cpf == "66666666666" ||
+                $cpf == "77777777777" ||
+                $cpf == "88888888888" ||
+                $cpf == "99999999999"
+            ){
+                throw new Exception("O CPF não pode ter todos os dígitos iguais");
+            }
         }
 
         function formatarCpf(){
@@ -134,11 +179,12 @@
 
         function verificarSomaCpf($cpf){
             //transforma o cpf para array
-            $arrayCpf = str_split($cpf); 
+            $arrayCpf = str_split($cpf);
 
             // roda um foreach para somar todos os numeros, transforma para array e verifica se as posicoes sao iguais
             $somaDosNumeros = 0;
             foreach($arrayCpf as $numero){
+                $flag = 
                 $somaDosNumeros += $numero;
             } 
             //transforma a soma dos numeros para array e compara se as 2 posicoes sao iguais

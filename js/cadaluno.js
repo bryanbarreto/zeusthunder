@@ -154,12 +154,22 @@ function salvar() {
 
             case 'editar':
                 $.post(url, {
-                    ajax: 'editar',
-                    descricao: descricao,
-                    id: row.id
+                    ajax: 'alterar',
+                    id: row.id,
+                    nome: nome,
+                    cpf: cpf,
+                    telefone: telefone,
+                    dataNascimento: dataNascimento,
+                    cep: cep,
+                    rua: rua,
+                    numero: numero,
+                    bairro: bairro,
+                    cidade: cidade,
+                    estado: estado,
+                    complemento: complemento
                 }, function (result) {
                     if (result == true) {
-                        $.messager.alert("Sucesso", "Exercício editado com sucesso", "info")
+                        $.messager.alert("Sucesso", "Aluno alterado com sucesso", "info")
                         $('#dg').datagrid('reload')
                         $('#dlg').dialog('close')
                     } else {
