@@ -145,9 +145,27 @@ function salvar() {
                     complemento: complemento
                 }, function (result) {
                     if (result == true) {
-                        $.messager.alert("Sucesso", "Aluno cadastrado com sucesso", "info")
                         $('#dg').datagrid('reload')
                         $('#dlg').dialog('close')
+                        $.messager.alert({
+                            title: 'Sucesso',
+                            msg: 'Aluno cadastrado com sucesso!',
+                            ok: 'Ok',
+                            icon: 'info',
+                            fn: function () {
+                                $.messager.confirm({
+                                    title: 'Matricular Aluno',
+                                    msg: 'Gostaria de matricular este aluno?',
+                                    ok: 'Sim',
+                                    cancel: 'Não',
+                                    fn: function (r) {
+                                        if (r) {
+                                            window.location.href = "matricularaluno.php"
+                                        }
+                                    }
+                                })
+                            }
+                        })
                     } else {
                         $.messager.alert("Erro", result, "error")
                     }

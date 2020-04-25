@@ -33,6 +33,18 @@
             return $res;
         }
 
+        function retornarAluno($campoTabela,$valor){
+            $sql = "SELECT *
+                    FROM aluno
+                    WHERE $campoTabela ilike '$valor'";
+            $query = pg_query($sql); 
+            if(pg_num_rows($query)==0){  
+                return false;
+            }
+            $res = pg_fetch_all($query);  
+            return $res;
+        }
+
         function incluir(){
             $sql = "INSERT INTO aluno (
                         id,
