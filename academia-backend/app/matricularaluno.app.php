@@ -47,7 +47,7 @@
             echo json_encode($json);
         break;
 
-        case 'ativar':
+        case 'ativar': 
             try{
                 $objeto->id = $_REQUEST['id'];
                 $objeto->ativar();
@@ -80,6 +80,11 @@
             }
             echo json_encode($json);
         break; 
+
+        case 'valorMatricula':
+            $json = $objeto->valorMatricula();
+            echo json_encode($json);
+        break;
     } 
   
 ?>    

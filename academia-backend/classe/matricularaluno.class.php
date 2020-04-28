@@ -13,10 +13,14 @@
             $sql = "SELECT *,
                         mat.id as idmatricula,
                         alu.id as idaluno,
-                        mat.b_ativo as statusmatricula
-                    FROM
+                        mat.b_ativo as statusmatricula,
+                        CASE WHEN
+                            mat.b_ativo = true THEN 'ATIVO' ELSE 'INATIVO'
+                        END AS matbativo
+                    FROM  
                         matricula mat
-                    RIGHT JOIN aluno alu on mat.id_aluno=alu.id";
+                    RIGHT JOIN aluno alu on mat.id_aluno=alu.id 
+                    WHERE alu.b_ativo = true";
             $query = pg_query($sql);
             if(pg_num_rows($query)==0){
                 return false;
@@ -54,16 +58,16 @@
                 throw new Exception("Erro ao ativar matrícula");
             }
         }
-        function intivar(){
+        function inativar(){
             $sql = "UPDATE matricula SET b_ativo = false where id = '$this->id'";
             $query=pg_query($sql);
             if(pg_affected_rows($query)==0){
                 throw new Exception("Erro ao inativar matrícula");
             }
-        }
+        } 
 
         function exameMedico(){
-            $sql = "UPDATE matricula SET exame_medico = '$this->exame_medico' WHERE id='$this->id'";
+            $sql = "UPDATE matricula SET exame_medico = 'true' WHERE id='$this->id'";
             $query = pg_query($sql);
             if(pg_affected_rows($query)==0){
                 throw new Exception("Erro ao vincular exame ao aluno");
@@ -83,6 +87,16 @@
             $matricula = $ano.".".$semestre.".".$fimCpf.".".$rand;
             
             return $matricula;
+        } 
+
+        function valorMatricula(){
+            $sql = "SELECT * FROM valormatricula WHERE b_ativo = true ORDER BY id DESC LIMIT 1";
+            $query = pg_query($sql);
+            if(pg_num_rows($query)==0){
+                return false;
+            }
+            $res = pg_fetch_all($query);
+            return $res;
         }
     }  
 ?> 
