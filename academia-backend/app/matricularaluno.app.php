@@ -26,6 +26,12 @@
                     $dados['status'] = $dados['b_ativo'] == 'f'?"INATIVO":"ATIVO";
 
                     $dados['matricula'] = $dados['matricula']==null?"Não Matriculado":$dados['matricula'];
+
+                    if($dados['vencimento'] != NULL){
+                        $dados['pagamento'] = strtotime(str_replace('/','-',$dados['vencimento'])) < strtotime(date('d-m-Y'))? "ATRASO (".$dados['vencimento'].")":$dados['vencimento'];
+                    }else{
+                        $dados['pagamento'] = " - ";
+                    }
                 }
             } 
             echo json_encode($json); 
@@ -36,6 +42,11 @@
                 $objeto->id_aluno = $_REQUEST['idaluno'];
                 $cpf = $_REQUEST['cpf'];
                 $objeto->data_matricula = date('d/m/Y');
+
+                //gera o vencimento baseado na data da matricula (data atual) + 1 mes
+                $objeto->vencimento = $objeto->gerarVencimento();
+
+                //gera a matricula do aluno, no formato ano.semestre.3UltimosDigitosDoCpf.3Random
                 $objeto->matricula = $objeto->gerarMatricula($cpf);
                 $objeto->matricular();
                 $json['bool'] = true;

@@ -21,11 +21,12 @@ $(document).ready(function () {
         }
     })
 
+    //retorna o valor atual da mensalidade e da matricula, baseado no ano/semestre atual
     $.post('academia-backend/app/cadvalores.app.php', {
         ajax: 'retornarValorMatricula'
     }, function (result) {
         if (result != false) {
-            precoMatricula = result[0].valormatricula
+            precoMensalidade = result[0].valormensalidade
         } else {
             $.messager.confirm({
                 title: 'Erro',
@@ -183,10 +184,6 @@ function matricular() {
             $.messager.alert("Aviso", "Este aluno já foi matriculado", "warning")
             return false
         }
-        if (precoMatricula == undefined) {
-            $.messager.alert("Aviso", "Não existe valores de matrícula e/ou mensalidade cadastrados para este semestre", "warning")
-            return false
-        }
         $.messager.confirm({
             title: "Matricular",
             msg: "Valor da matrícula: R$" + precoMatricula + "<br>Gostaria de matricular o aluno " + row.c_nome + " ?",
@@ -216,7 +213,9 @@ function matricular() {
 }
 
 function verificarAtraso(value, row, index) {
-    if (value.includes('(')) {
+    if (value.includes('ATRASO')) {
         return 'background-color:#ccc;color:red;';
+    } else {
+        return 'background-color:#fff;color:darkgreen';
     }
 }

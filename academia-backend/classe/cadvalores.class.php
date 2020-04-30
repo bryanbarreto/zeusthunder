@@ -74,7 +74,32 @@
             $this->mensalidade = str_replace($remove,"",$mensalidade);
             $this->anosem = str_replace($remove,"",$anosem);
         } 
+
+        function verificarDuplicidadeAnoSemestre($op,$anosem){
+            if($op == "incluir"){
+                $sql = "SELECT * FROM valores WHERE anosemestre = '$anosem'";
+            }else if($op == "alterar"){
+                $sql = "SELECT * FROM valores WHERE anosemestre = '$anosem' and id != '$this->id'";
+            }
+
+            $query = pg_query($sql);
+            if(pg_num_rows($query)>0){
+                $res = pg_fetch_all($query);
+                $status = $res[0]['b_ativo'] == 't'?" ativo para este ano/semestre (".$anosem.").":" para o ano/semestre ".$anosem.", porém inativo.";
+                throw new Exception("Já existe um registro".$status);
+            }
+        }
+
+        function retornarValorMatricula(){
+            $sql = "SELECT * from valores WHERE anosemestre = '$this->anosem' AND b_ativo = true ORDER BY id desc LIMIT 1";
+            $query = pg_query($sql);
+            if(pg_num_rows($query)==0){
+                return false;
+            }
+            $res = pg_fetch_all($query);
+            return $res;
+        }
     }
-?>
+?> 
 
  

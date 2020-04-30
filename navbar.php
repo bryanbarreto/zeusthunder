@@ -19,6 +19,6 @@
 <div id="mm3" style="width:180px;">
     <div onclick="window.location.href = 'cadvalores.php'" data-options="iconCls:'icon-sum'">Gerenciar Valores</div>
     <div class="menu-sep"></div>
-   <div onclick="window.location.href = 'financeiro.php'" data-options="iconCls:'icon-sum'">Situação Aluno</div>
+    <div onclick="window.location.href = 'pagamentos.php'" data-options="iconCls:'icon-sum'">Pagamentos</div>
 </div>
   

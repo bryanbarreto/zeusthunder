@@ -6,25 +6,20 @@
     <title>Teste</title>
     <?php include 'includes/jeasyui.includes.php'; ?>
 </head>
-<body>
+<body> 
 <?php include 'navbar.php'; ?>
+
 <h2>Gerenciar Testes</h2>
 
 <?php
-   
-   $cpf = "11998889742";
 
-   $mes = date('m') <= 6? 1:2; 
+$data = '29/04/2019';
 
-   $finalCpf = substr($cpf, 8);
 
-   $ano = date('Y');
+function formatarData($data){
 
-   for($i=0;$i<3;$i++){ 
-    $aleatorio .= rand(0,9);
-   }
+}
 
-   echo "MATRICULA: ".$ano.".".$mes.".".$finalCpf.$aleatorio;
 ?>
 </body>
 </html>

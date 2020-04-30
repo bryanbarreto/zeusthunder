@@ -1,3 +1,32 @@
+$(document).ready(function () {
+    //metodo de carregamento da grid
+    $('#dg').datagrid({
+        onLoadError: function () {
+            $.messager.alert("Erro", "Erro ao carregar alunos", "error")
+            $('#exibeMatricula').textbox('clear')
+            $('#exibeMensalidade').textbox('clear')
+        },
+        onLoadSuccess: function (data) {
+            var flag = true
+            var semestreAtual = data.rows[0].semestreAtual
+            for (var i = 0; i < data.rows.length; i++) {
+                //console.log(data.rows[i].anosemestre)
+                if (data.rows[i].anosemestre == semestreAtual && data.rows[i].b_ativo == 't') {
+                    $('#exibeMatricula').textbox('setValue', data.rows[i].valormatriculaf)
+                    $('#exibeMensalidade').textbox('setValue', data.rows[i].valormensalidadef)
+                    flag = false
+                }
+            }
+
+            //condicao para limpar o campo de valor da matricula e da mensalidade
+            if (flag == true) {
+                $('#exibeMatricula').textbox('clear')
+                $('#exibeMensalidade').textbox('clear')
+            }
+        }
+    })
+})
+
 var row
 var opcao
 var url = "academia-backend/app/cadvalores.app.php"

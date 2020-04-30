@@ -13,6 +13,14 @@
     <?php include 'navbar.php'; ?>
 
     <h2>Gerenciar Cotas</h2>
+    <h4>Valores Atuais:</h4>
+    <div style="margin-bottom:10px">
+        <input class="easyui-textbox" id="exibeMensalidade" data-options="label:'Mensalidade: ',labelWidth:100, readonly:true" style="width:300px">
+    </div>
+
+    <div style="margin-bottom:10px">
+        <input class="easyui-textbox" id="exibeMatricula" data-options="label:'Matrícula: ',labelWidth:100, readonly:true" style="width:300px">
+    </div>
 
     <!--data grid-->
     <table id="dg" title="Cadastro de Valores" class="easyui-datagrid" style="width:100% ;height:400px"

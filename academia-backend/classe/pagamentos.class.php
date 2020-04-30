@@ -1,5 +1,5 @@
 <?php
-    class MatricularAluno{
+    class Pagamentos{
     public $id;
     public $matricula;
     public $id_aluno;
