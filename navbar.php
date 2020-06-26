@@ -12,7 +12,7 @@
     <div onclick="window.location.href = 'cadexercicio.php'" data-options="iconCls:'icon-add'">Exercícios</div>
 </div>
  
-<div id="mm2" style="width:150px;">
+<div id="mm2" style="width:170px;">
    <div onclick="window.location.href = 'matricularaluno.php'" data-options="iconCls:'icon-add'">Matricular Aluno</div>
 </div>
 
